@@ -26,8 +26,8 @@ class HE_Fernet_Comparison():
         array2_1 = np.copy(array2)
         
         # testing integers
-        self.int_fernet.test(20, 100, arr1=array1, arr2=array2)
-        self.int_HE.test(20, 100, arr1=array1_1, arr2=array2_1)
+        self.int_fernet.test(5, 100, arr1=array1, arr2=array2)
+        self.int_HE.test(5, 100, arr1=array1_1, arr2=array2_1)
         
         # make sure the HE library actually produced correct results and matched up with non HE calculations
         assert np.equal(self.int_fernet.sum_arr, self.int_HE.sum_arr).all()
@@ -65,8 +65,8 @@ class HE_Fernet_Comparison():
         array1_1 = np.copy(array1)
         array2_1 = np.copy(array2)
         
-        self.float_fernet.test(20, 100, num_decimals, arr1=array1, arr2=array2)
-        self.float_HE.test(20, 100, num_decimals, arr1=array1_1, arr2=array2_1)
+        self.float_fernet.test(5, 100, num_decimals, arr1=array1, arr2=array2)
+        self.float_HE.test(5, 100, num_decimals, arr1=array1_1, arr2=array2_1)
         
         # make sure the HE library actually produced correct results and matched up with non HE calculations
         sum_max_diff = np.abs(self.float_fernet.sum_arr - self.float_HE.sum_arr).max()
