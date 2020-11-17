@@ -13,21 +13,30 @@ class Float_Fernet:
         self.array1 = None
         self.array2 = None
         
+        self.sum_arr = None
+        self.sub_arr = None
+        self.mul_arr = None
+        
         self.showOutput = showOutput
     
-    def test(self, runs, size, fracDigits, useSameNumbers=True):
+    def test(self, runs, size, fracDigits, useSameNumbers=True, arr1=None, arr2=None):
         # try fracDigits with 32 and then lower to 3
         if useSameNumbers:
             np.random.seed(0)
+            
+        if arr1 is not None:
+            self.array1 = arr1
+        if arr2 is not None:
+            self.array2 = arr2
         
         if self.array1 is None:
-            self.array1 = random.uniform(0, 1.0, size=(size))
+            self.array1 = random.uniform(0, 1.0, size=(size,))
         if self.array2 is None:
-            self.array2 = random.uniform(0, 1.0, size=(size))
+            self.array2 = random.uniform(0, 1.0, size=(size,))
             
-        if not useSameNumbers:
-            self.array1 = random.uniform(0, 1.0, size=(size))
-            self.array2 = random.uniform(0, 1.0, size=(size))
+        if not useSameNumbers and arr1 is None and arr2 is None:
+            self.array1 = random.uniform(0, 1.0, size=(size,))
+            self.array2 = random.uniform(0, 1.0, size=(size,))
             
         
         array1 = np.round(self.array1, fracDigits)
@@ -120,6 +129,10 @@ class Float_Fernet:
         
         if self.showOutput:
             print(ctxtSum, ctxtSub, ctxtMul)
+            
+        self.sum_arr = ctxtSum
+        self.sub_arr = ctxtSub
+        self.mul_arr = ctxtMul
 
         ######################################################
         

@@ -11,11 +11,21 @@ class Int_HE:
         self.array1 = None
         self.array2 = None
         
+        self.sum_arr = None
+        self.sub_arr = None
+        self.mul_arr = None
+        
         self.showOutput = showOutput
     
-    def test(self, runs, size, useSameNumbers=True):
+    def test(self, runs, size, useSameNumbers=True, arr1=None, arr2=None):
         if useSameNumbers:
             np.random.seed(0)
+            
+        if arr1 is not None:
+            self.array1 = arr1
+        if arr2 is not None:
+            self.array2 = arr2
+            
             
         #  100 length numpy array of random numbers from 0-99
         if self.array1 is None:
@@ -23,7 +33,7 @@ class Int_HE:
         if self.array2 is None:
             self.array2 = random.randint(100, size=(size,))
             
-        if not useSameNumbers:
+        if not useSameNumbers and arr1 is None and arr2 is None:
             self.array1 = random.randint(100, size=(size,))
             self.array2 = random.randint(100, size=(size,))
             
@@ -123,6 +133,11 @@ class Int_HE:
         
         if (self.showOutput):
             print(resSum, resSub, resMul)
+            
+        self.sum_arr = resSum
+        self.sub_arr = resSub
+        self.mul_arr = resMul
+        
         ######################################################
         
         
